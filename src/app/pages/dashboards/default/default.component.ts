@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventService } from '../../../core/services/event.service';
 
 import { ConfigService } from '../../../core/services/config.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-default',
@@ -21,9 +22,12 @@ export class DefaultComponent implements OnInit {
   statData: Array<[]>;
 
   isActive: string;
+  today: number = Date.now();
 
   @ViewChild('content') content;
-  constructor(private modalService: NgbModal, private configService: ConfigService, private eventService: EventService) {
+  constructor(public datepipe: DatePipe,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService) {
+    setInterval(() => {this.today = Date.now()}, 1);
+
   }
 
   ngOnInit() {

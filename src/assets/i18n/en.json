@@ -1,11 +1,11 @@
 {
   "HEADER": {
-    "SEARCH": "Search...",
+    "SEARCH": "Recherche...",
     "MEGA_MENU": "Mega Menu",
     "NOTIFICATIONS": {
       "TITLE": "Notifications",
-      "VIEW_ALL": "View All",
-      "LOAD_MORE": "View More..",
+      "VIEW_ALL": "Voir tout",
+      "LOAD_MORE": "lire la suite..",
       "FIRST": {
         "TITLE": "Your order is placed",
         "TEXT": "If several languages coalesce the grammar",
@@ -70,7 +70,7 @@
       "TEXT": "Menu"
     },
     "DASHBOARDS": {
-      "TEXT": "Dashboards",
+      "TEXT": "Tableau de bord",
       "BADGE": "04",
       "LIST": {
         "DEFAULT": "Default",
@@ -98,7 +98,7 @@
       "TEXT": "Apps"
     },
     "CALENDAR": {
-      "TEXT": "Calendar"
+      "TEXT": "Calendrier"
     },
     "CHAT": {
       "TEXT": "Chat",
@@ -134,9 +134,9 @@
       }
     },
     "EMAIL": {
-      "TEXT": "Email",
+      "TEXT": "Reclamation",
       "LIST": {
-        "INBOX": "Inbox",
+        "INBOX": "Reclamation membre",
         "READEMAIL": "Read Email",
         "TEMPLATE": {
           "BADGE": "New",
@@ -157,27 +157,27 @@
       }
     },
     "PROJECTS": {
-      "TEXT": "Projects",
+      "TEXT": "Matiéres",
       "LIST": {
         "GRID": "Projects Grid",
-        "PROJECTLIST": "Projects List",
+        "PROJECTLIST": "Listes des matiéres",
         "OVERVIEW": "Project Overview",
-        "CREATE": "Create New"
+        "CREATE": "nouvelle matiére"
       }
     },
     "TASKS": {
-      "TEXT": "Tasks",
+      "TEXT": "Evaluation",
       "LIST": {
         "TASKLIST": "Task List",
-        "KANBAN": "Kanban Board",
+        "KANBAN": "Voir evaluations",
         "CREATETASK": "Create Task"
       }
     },
     "CONTACTS": {
-      "TEXT": "Contacts",
+      "TEXT": "Utilisateurs",
       "LIST": {
-        "USERGRID": "User Grid",
-        "USERLIST": "User List",
+        "USERGRID": "Enseignant",
+        "USERLIST": "Etudiants",
         "PROFILE": "Profile"
       }
     },

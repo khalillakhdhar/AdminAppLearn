@@ -20,7 +20,8 @@ export const MENU: MenuItem[] = [
                 label: 'MENUITEMS.DASHBOARDS.LIST.DEFAULT',
                 link: '/dashboard',
                 parentId: 2
-            },
+            }
+            /*,
             {
                 id: 4,
                 label: 'MENUITEMS.DASHBOARDS.LIST.SAAS',
@@ -39,6 +40,7 @@ export const MENU: MenuItem[] = [
                 link: '/dashboards/blog',
                 parentId: 2
             },
+            */
         ]
     },
     {
@@ -61,9 +63,9 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.CHAT.TEXT',
         icon: 'bx-chat',
         link: '/chat',
-        
+
     },
-    {
+   /* {
         id: 11,
         label: 'MENUITEMS.FILEMANAGER.TEXT',
         icon: 'bx-file',
@@ -176,7 +178,7 @@ export const MENU: MenuItem[] = [
                 parentId: 21
             }
         ]
-    },
+    },*/
     {
         id: 29,
         label: 'MENUITEMS.EMAIL.TEXT',
@@ -188,7 +190,7 @@ export const MENU: MenuItem[] = [
                 link: '/email/inbox',
                 parentId: 29
             },
-            {
+         /*   {
                 id: 31,
                 label: 'MENUITEMS.EMAIL.LIST.READEMAIL',
                 link: '/email/read/1',
@@ -207,25 +209,25 @@ export const MENU: MenuItem[] = [
                         id:33 ,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BASIC',
                         link: '/email/basic',
-                        parentId:32 
+                        parentId:32
                     },
                     {
                         id:34 ,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.ALERT',
                         link: '/email/alert',
-                        parentId:32 
+                        parentId:32
                     },
                     {
                         id:35 ,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BILLING',
                         link: '/email/billing',
-                        parentId:32 
+                        parentId:32
                     }
                 ]
-            }
+            }*/
         ]
     },
-    {
+  /*  {
         id: 36,
         label: 'MENUITEMS.INVOICES.TEXT',
         icon: 'bx-receipt',
@@ -243,30 +245,30 @@ export const MENU: MenuItem[] = [
                 parentId: 36
             },
         ]
-    },
+    }, */
     {
         id: 39,
         label: 'MENUITEMS.PROJECTS.TEXT',
         icon: 'bx-briefcase-alt-2',
         subItems: [
-            {
+           /* {
                 id: 40,
                 label: 'MENUITEMS.PROJECTS.LIST.GRID',
                 link: '/projects/grid',
                 parentId: 38
-            },
+            },*/
             {
                 id: 41,
                 label: 'MENUITEMS.PROJECTS.LIST.PROJECTLIST',
                 link: '/projects/list',
                 parentId: 38
             },
-            {
+        /*    {
                 id: 42,
                 label: 'MENUITEMS.PROJECTS.LIST.OVERVIEW',
                 link: '/projects/overview',
                 parentId: 38
-            },
+            },*/
             {
                 id: 43,
                 label: 'MENUITEMS.PROJECTS.LIST.CREATE',
@@ -280,24 +282,25 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.TASKS.TEXT',
         icon: 'bx-task',
         subItems: [
-            {
+         /*   {
                 id: 45,
                 label: 'MENUITEMS.TASKS.LIST.TASKLIST',
                 link: '/tasks/list',
                 parentId: 44
-            },
+            },*/
             {
                 id: 46,
                 label: 'MENUITEMS.TASKS.LIST.KANBAN',
                 link: '/tasks/kanban',
                 parentId: 44
             },
-            {
+         /*   {
                 id: 47,
                 label: 'MENUITEMS.TASKS.LIST.CREATETASK',
                 link: '/tasks/create',
                 parentId: 44
             }
+            */
         ]
     },
     {
@@ -325,7 +328,7 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-    {
+   /* {
         id: 52,
         label: 'MENUITEMS.BLOG.TEXT',
         icon: 'bx-file',
@@ -823,6 +826,6 @@ export const MENU: MenuItem[] = [
                 ]
             },
         ]
-    }
+    }*/
 ];
 
