@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  defaultauth: 'fackbackend',
+  defaultauth: 'firebase',
   firebaseConfig: {
     apiKey: "AIzaSyDN6VbkKgjZQDMbE2izzPUllHX0pOeWjRU",
     authDomain: "elearnweb-2ece8.firebaseapp.com",
