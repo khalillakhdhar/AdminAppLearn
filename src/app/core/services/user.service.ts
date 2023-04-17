@@ -1,17 +1,46 @@
+
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-import { User } from '../models/auth.models';
+@Injectable({
+  providedIn: 'root'
+})
+export class UsersService {
 
-@Injectable({ providedIn: 'root' })
-export class UserProfileService {
-    constructor(private http: HttpClient) { }
+  constructor(
+    private firestore: AngularFirestore
+  ) { }
 
-    getAll() {
-        return this.http.get<User[]>(`/api/login`);
-    }
 
-    register(user: User) {
-        return this.http.post(`/users/register`, user);
-    }
+  create_NewUser(record) {
+    return this.firestore.collection('Users').add(record);
+  }
+
+  read_Users() {
+    return this.firestore.collection('Users').snapshotChanges();
+  }
+  read_clients() {
+    return this.firestore.collection("Users", (ref) => ref.where("grade", "==", "client"))
+    .snapshotChanges();
+  }
+  read_admins() {
+    return this.firestore.collection("Users", (ref) => ref.where("grade", "==", "admin"))
+    .snapshotChanges();
+  }
+  read_current(email) {
+    return this.firestore.collection("Users", (ref) => ref.where("email", "==", email))
+    .snapshotChanges();
+  }
+  read_effectifs() {
+    return this.firestore.collection("Users", (ref) => ref.where("grade", "!=", "client"))
+    .snapshotChanges();
+  }
+  update_User(recordID, record) {
+    this.firestore.doc('Users/' + recordID).update(record);
+    console.log('updated');
+  }
+
+  delete_User(record_id) {
+    this.firestore.doc('Users/' + record_id).delete();
+  }
 }

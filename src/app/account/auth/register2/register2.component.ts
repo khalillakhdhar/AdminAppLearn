@@ -6,7 +6,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthenticationService } from '../../../core/services/auth.service';
 import { environment } from '../../../../environments/environment';
 import { first } from 'rxjs/operators';
-import { UserProfileService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-register2',
@@ -21,7 +20,7 @@ export class Register2Component implements OnInit {
   successmsg = false;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService,
-    private userService: UserProfileService) { }
+    ) { }
   // set the currenr year
   year: number = new Date().getFullYear();
 
@@ -60,7 +59,8 @@ export class Register2Component implements OnInit {
     // stop here if form is invalid
     if (this.signupForm.invalid) {
       return;
-    } else {
+    }
+    /*else {
       if (environment.defaultauth === 'firebase') {
         this.authenticationService.register(this.f.email.value, this.f.password.value).then((res: any) => {
           this.successmsg = true;
@@ -84,7 +84,7 @@ export class Register2Component implements OnInit {
             error => {
               this.error = error ? error : '';
             });
-      }
+      }*/
     }
   }
-}
+

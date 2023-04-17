@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="user" class="container-fluid">
 
   <app-page-title title="Profile" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
@@ -9,8 +9,8 @@
           <div class="row">
             <div class="col-7">
               <div class="text-primary p-3">
-                <h5 class="text-primary">Welcome Back !</h5>
-                <p>It will seem like simplified</p>
+                <h5 class="text-primary">Bienvenu!</h5>
+                <p>profile de {{user.nom}}</p>
               </div>
             </div>
             <div class="col-5 align-self-end">
@@ -21,11 +21,16 @@
         <div class="card-body pt-0">
           <div class="row">
             <div class="col-sm-4">
-              <div class="avatar-md profile-user-wid mb-4">
-                <img src="assets/images/users/avatar-1.jpg" alt="" class="img-thumbnail rounded-circle">
+              <div *ngIf="user.photo!==''" class="avatar-md profile-user-wid mb-4">
+                <img [src]="user?.photo  " alt="" class="img-thumbnail rounded-circle">
               </div>
-              <h5 class="font-size-15 text-truncate">Cynthia Price</h5>
-              <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
+              <div   class="avatar-sm mx-auto mb-4" *ngIf="!user.photo">
+                <span class="avatar-title img-thumbnail rounded-circle bg-soft bg-primary text-primary font-size-16">
+                  {{user.nom.charAt(0)}}
+                </span>
+              </div>
+              <h5 class="font-size-15 ">{{user.nom+" "+user.prenom}}</h5>
+              <p class="text-muted mb-0 text-truncate">{{user.grade}}</p>
             </div>
 
             <div class="col-sm-8">
@@ -54,28 +59,27 @@
 
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">Personal Information</h4>
+          <h4 class="card-title mb-4">Information</h4>
 
-          <p class="text-muted mb-4">Hi I'm Cynthia Price,has been the industry's standard dummy text To an English
-            person, it will seem like simplified English, as a skeptical Cambridge.</p>
+          <p class="text-muted mb-4"><br></p>
           <div class="table-responsive">
             <table class="table table-nowrap mb-0">
               <tbody>
                 <tr>
-                  <th scope="row">Full Name :</th>
-                  <td>Cynthia Price</td>
+                  <th scope="row">Nom complet :</th>
+                  <td>{{user.nom+ " "+ user.prenom}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Mobile :</th>
-                  <td>(123) 123 1234</td>
+                  <td>{{user.tel}}</td>
                 </tr>
                 <tr>
                   <th scope="row">E-mail :</th>
-                  <td>cynthiaskote@gmail.com</td>
+                  <td>{{user.email}}</td>
                 </tr>
                 <tr>
-                  <th scope="row">Location :</th>
-                  <td>California, United States</td>
+                  <th scope="row">Adresse :</th>
+                  <td>{{user.adresse}}</td>
                 </tr>
               </tbody>
             </table>
