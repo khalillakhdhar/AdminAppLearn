@@ -6,6 +6,11 @@ import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/angular'
 import { category, calendarEvents, createEventId } from './data';
 
 import Swal from 'sweetalert2';
+import { CoursService } from '../../core/services/cours.service';
+import { TacheService } from '../../core/services/tache.service';
+import { Observable } from 'rxjs';
+import { Tache } from 'src/app/core/models/tache';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar',
@@ -13,6 +18,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+
+  taches: any;
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -37,7 +44,7 @@ export class CalendarComponent implements OnInit {
     },
     initialView: "dayGridMonth",
     themeSystem: "bootstrap",
-    initialEvents: calendarEvents,
+    initialEvents: JSON.parse(localStorage.getItem('taches')),
     weekends: true,
     editable: true,
     selectable: true,
@@ -56,7 +63,12 @@ export class CalendarComponent implements OnInit {
   currentEvents: EventApi[] = [];
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Calendar', active: true }];
+    console.log("events",calendarEvents);
+
+console.log("les taches",JSON.parse(localStorage.getItem('taches')));
+console.log("data taches",calendarEvents);
+
+    this.breadCrumbItems = [{ label: 'Hygieneco' }, { label: 'Calendar', active: true }];
 
     this.formData = this.formBuilder.group({
       title: ['', [Validators.required]],
@@ -88,11 +100,13 @@ export class CalendarComponent implements OnInit {
    */
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
+    console.log("events",this.currentEvents);
   }
 
   constructor(
     private modalService: NgbModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private tacheService:TacheService
   ) {}
 
   get form() {
@@ -104,17 +118,17 @@ export class CalendarComponent implements OnInit {
    */
   confirm() {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
+      title: 'vous êtes sure?',
+      text: 'tache irréversible!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#34c38f',
       cancelButtonColor: '#f46a6a',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'oui, suprimée!',
     }).then((result) => {
       if (result.value) {
         this.deleteEventData();
-        Swal.fire('Deleted!', 'Event has been deleted.', 'success');
+        Swal.fire('Deleted!', 'taches supprimé.', 'success');
       }
     });
   }
@@ -143,7 +157,7 @@ export class CalendarComponent implements OnInit {
   editEventSave() {
     const editTitle = this.formEditData.get('editTitle').value;
     const editCategory = this.formEditData.get('editCategory').value;
-    
+
     const editId = this.calendarEvents.findIndex(
       (x) => x.id + '' === this.editEvent.id + ''
     );
@@ -190,16 +204,22 @@ export class CalendarComponent implements OnInit {
    */
   saveEvent() {
     if (this.formData.valid) {
+
       const title = this.formData.get('title').value;
       const className = this.formData.get('category').value;
       const calendarApi = this.newEventDate.view.calendar;
+
       calendarApi.addEvent({
         id: createEventId(),
         title,
         start: this.newEventDate.date,
         end: this.newEventDate.date,
         className: className + ' ' + 'text-white'
-      });
+      }
+      //show event in the calendar on console.log
+
+      );
+      console.log(calendarApi.getEvents());
       this.position();
       this.formData = this.formBuilder.group({
         title: '',

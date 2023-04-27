@@ -6,6 +6,8 @@ import { EventService } from '../../../core/services/event.service';
 
 import { ConfigService } from '../../../core/services/config.service';
 import { DatePipe } from '@angular/common';
+import { TacheService } from 'src/app/core/services/tache.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-default',
@@ -25,13 +27,28 @@ export class DefaultComponent implements OnInit {
   today: number = Date.now();
 
   @ViewChild('content') content;
-  constructor(public datepipe: DatePipe,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService) {
+  constructor(public datepipe: DatePipe,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService,    private tacheService:TacheService
+    ) {
     setInterval(() => {this.today = Date.now()}, 1);
 
   }
 
   ngOnInit() {
+    this.tacheService.read_Taches().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id,
+            ...c.payload.doc.data() as {} })
+        )
+      )
+    ).subscribe(data => {
+      let taches = data;
+      console.log("taches",taches);
+      localStorage.setItem('taches', JSON.stringify(taches));
 
+
+    }
+    );
     /**
      * horizontal-vertical layput set
      */
