@@ -58,13 +58,13 @@ export const MENU: MenuItem[] = [
         icon: 'bx-calendar',
         link: '/calendar',
     },
-    {
+  /*  {
         id: 10,
         label: 'MENUITEMS.CHAT.TEXT',
         icon: 'bx-chat',
         link: '/chat',
 
-    },
+    },*/
    /* {
         id: 11,
         label: 'MENUITEMS.FILEMANAGER.TEXT',

@@ -159,12 +159,12 @@ export const MENU: MenuItem[] = [
                 link: '/calendar',
                 parentId: 26
             },
-            {
+          /*  {
                 id: 28,
                 label: 'MENUITEMS.CHAT.TEXT',
                 link: '/chat',
                 parentId: 26
-            },
+            },*/
             {
                 id: 29,
                 label: 'MENUITEMS.FILEMANAGER.TEXT',
@@ -196,19 +196,19 @@ export const MENU: MenuItem[] = [
                                 id:34 ,
                                 label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BASIC',
                                 link: '/email/basic',
-                                parentId:33 
+                                parentId:33
                             },
                             {
                                 id:35 ,
                                 label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.ALERT',
                                 link: '/email/alert',
-                                parentId:33 
+                                parentId:33
                             },
                             {
                                 id:36 ,
                                 label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BILLING',
                                 link: '/email/billing',
-                                parentId:33 
+                                parentId:33
                             }
                         ]
                     }

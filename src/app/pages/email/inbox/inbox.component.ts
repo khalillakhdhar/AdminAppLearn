@@ -4,6 +4,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Email } from './inbox.model';
 import { emailData } from './data';
 import Swal from 'sweetalert2';
+import { ReclamationsService } from '../../../core/services/reclamation.service';
+import { Reclamation } from '../../../core/models/reclamation';
 
 @Component({
   selector: 'app-inbox',
@@ -15,7 +17,7 @@ import Swal from 'sweetalert2';
  * Email Inbox component
  */
 export class InboxComponent implements OnInit {
-
+reclamations: Reclamation[];
   public Editor = ClassicEditor;
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -33,14 +35,16 @@ export class InboxComponent implements OnInit {
   // start and end index
   startIndex = 1;
   endIndex = 15;
-
-  constructor(private modalService: NgbModal) {
+reclamation=new Reclamation();
+  constructor(private modalService: NgbModal,private reclamationService:ReclamationsService) {
   }
 
   ngOnInit() {
+
     this.breadCrumbItems = [{ label: 'Email' }, { label: 'Inbox', active: true }];
     this.emailData = emailData;
     this.totalRecords = emailData.length;
+    this.readReclamations();
   }
 
   open(content) {
@@ -76,6 +80,23 @@ export class InboxComponent implements OnInit {
     }
     this.emailIds = [];
   }
+//read reclamations from firebase reclamationService
+  readReclamations(){
+    this.reclamationService.read_Reclamations().subscribe(data => {
+      this.reclamations = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          email: e.payload.doc.data()['email'],
+          type: e.payload.doc.data()['type'],
+          message: e.payload.doc.data()['message'],
+          dateheure: e.payload.doc.data()['dateheure'],
+        };
+      })
+      console.log("reclamations",this.reclamations);
+    });
+  }
+
+
 
   confirm() {
     Swal.fire({

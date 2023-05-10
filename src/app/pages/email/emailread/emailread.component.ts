@@ -6,6 +6,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Email } from '../inbox/inbox.model';
 import { emailData } from '../inbox/data';
+import { ReclamationsService } from 'src/app/core/services/reclamation.service';
 
 @Component({
   selector: 'app-emailread',
@@ -22,16 +23,17 @@ export class EmailreadComponent implements OnInit {
   public Editor = ClassicEditor;
   // bread crumb items
   breadCrumbItems: Array<{}>;
-  emailRead: Array<Email>;
+  emailRead:any;
 
-  constructor(private route: ActivatedRoute, private modalService: NgbModal) {
+  constructor(private reclamationService:ReclamationsService,private route: ActivatedRoute, private modalService: NgbModal) {
     this.route.params.subscribe(params => {
-      this.emailRead = emailData.filter((email) => {
-        // tslint:disable-next-line: radix
-        return email.id === parseInt(params.id);
-      });
-      this.index = params.id;
-    });
+// read reclamations by id from params.id
+      this.reclamationService.read_Reclamation(params.id).subscribe(data => {
+        this.emailRead = data.payload.data();
+        console.log(this.emailRead);
+
+  });
+})
   }
 
   ngOnInit() {
