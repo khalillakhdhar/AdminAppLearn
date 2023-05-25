@@ -8,6 +8,7 @@ import { ConfigService } from '../../../core/services/config.service';
 import { DatePipe } from '@angular/common';
 import { TacheService } from 'src/app/core/services/tache.service';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-default',
@@ -27,13 +28,14 @@ export class DefaultComponent implements OnInit {
   today: number = Date.now();
 
   @ViewChild('content') content;
-  constructor(public datepipe: DatePipe,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService,    private tacheService:TacheService
+  constructor(public datepipe: DatePipe,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService,    private tacheService:TacheService,private router:Router
     ) {
     setInterval(() => {this.today = Date.now()}, 1);
 
   }
 
   ngOnInit() {
+    this.router.navigate(['../contacts/profile']);
     this.tacheService.read_Taches().pipe(
       map(changes =>
         changes.map(c =>

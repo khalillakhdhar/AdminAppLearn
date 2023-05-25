@@ -19,7 +19,7 @@ export class AuthenticationService {
      * Returns the current user
      */
     public currentUser(): User {
-        return getFirebaseBackend().getAuthenticatedUser();
+        return getFirebaseBackend().getAuthenticatedUser(); // get the user from firebase auth service
     }
 
     /**
@@ -46,9 +46,10 @@ export class AuthenticationService {
 
 
           //us.grade="user";
-          us.id=response.user.uid;
+          us.id=response.uid;
         let uss=Object.assign({}, us);
         console.log(uss);
+        delete uss.password;
         this.userService.create_NewUser(uss);
         //localStorage.setItem('user', JSON.stringify(uss));
         this.readme(uss.email);

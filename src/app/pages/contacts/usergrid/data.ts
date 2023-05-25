@@ -1,7 +1,7 @@
 const userGridData = [
     {
         id: 1,
-        name: 'David McHenry',
+        name: 'David Mcadmin',
         designation: 'UI/UX Designer',
         projects: ['Photoshop', 'illustrator'],
         email: 'david@skote.com'

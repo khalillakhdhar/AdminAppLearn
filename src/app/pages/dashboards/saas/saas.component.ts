@@ -53,7 +53,7 @@ export class SaasComponent implements OnInit, AfterViewInit {
     this.configService.getConfig().subscribe(response => {
       this.sassEarning = response.sassEarning;
       this.sassTopSelling = response.sassTopSelling;
-    
+
     });
   }
 
@@ -67,7 +67,7 @@ export class SaasComponent implements OnInit, AfterViewInit {
       // Message Push in Chat
       this.ChatData.push({
         align: 'right',
-        name: 'Henry Wells',
+        name: 'admin Wells',
         message,
         time: currentDate.getHours() + ':' + currentDate.getMinutes()
       });

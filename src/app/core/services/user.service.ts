@@ -1,19 +1,46 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+// import http
+// import http client
+import { HttpClient } from '@angular/common/http';
+// import observable
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
+// import todo model
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
+url=" http://localhost:8080/user"
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    // http service
+    private http: HttpClient,
   ) { }
 
 
   create_NewUser(record) {
-    return this.firestore.collection('Users').add(record);
+// send the new user to this.url post request
+//
+let user = new User();
+user.nom=record.nom;
+user.prenom=record.prenom;
+user.email=record.email;
+user.password=record.password;
+user.grade="user";
+user.tel=record.tel;
+user.photo="none"
+ this.http.post<User>(this.url, user).subscribe(data=>{
+  console.log(data);
+ });
+
+    return this.firestore.collection('Users').add(record).then(
+      ()=>{
+        console.log("firebase created")
+      }
+    );
   }
 
   read_Users() {

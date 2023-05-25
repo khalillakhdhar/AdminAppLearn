@@ -56,7 +56,7 @@ const ChatData = [
     },
     {
         align: 'right',
-        name: 'Henry Wells',
+        name: 'admin Wells',
         message: 'Hi, How are you? What about our next meeting?',
         time: '10:02'
     },
@@ -72,7 +72,7 @@ const ChatData = [
     },
     {
         align: 'right',
-        name: 'Henry Wells',
+        name: 'admin Wells',
         message: 'Wow that\'s great',
         time: '10:02'
     },

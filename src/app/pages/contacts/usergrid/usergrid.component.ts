@@ -64,7 +64,7 @@ this.user=new User();
     this._fetchData();
   }
   readagents(): void {
-    this.userService.read_effectifs().pipe(
+    this.userService.read_Users().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id,
@@ -150,7 +150,7 @@ this.user=new User();
       this.user.grade= this.selected;
       this.user.password=this.userForm.get('password').value;
       let us=Object.assign({},this.user);
-      this.userService.create_NewUser(us);
+      //this.userService.create_NewUser(us);
       this.authenticationService.register(this.user);
        this.modalService.dismissAll()
     }

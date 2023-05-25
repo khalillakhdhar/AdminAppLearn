@@ -45,10 +45,10 @@
                   <label for="password">Mot de passe:</label>
                   <div class="input-group auth-pass-inputgroup">
                     <input type="password" class="form-control" formControlName="password" placeholder="Enter password"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" aria-label="Password"
+                    id="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" aria-label="Password"
                       aria-describedby="password-addon">
 
-                    <button class="btn btn-light ms-0" type="button" id="password-addon"><i
+                    <button (click)="changePasswordType()" class="btn btn-light ms-0" type="button" id="togglePassword"><i
                         class="mdi mdi-eye-outline"></i></button>
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                       <span *ngIf="f.password.errors.required">Password is required</span>
@@ -95,10 +95,9 @@ Se souvenir de moi                  </label>
           </div>
         </div>
         <div class="mt-5 text-center">
-          <p>Don't have an account ? <a routerLink="/account/signup" class="fw-medium text-primary"> Signup
-              now
+          <p>Pas encore membre ? <a routerLink="/account/signup" class="fw-medium text-primary"> S'inscrire maintenant
             </a> </p>
-          <p>© {{year}} Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+          <p>© {{year}}ONLEARN <i class="mdi mdi-heart text-danger"></i> PFE</p>
         </div>
 
       </div>

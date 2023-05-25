@@ -52,12 +52,12 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.APPS.TEXT',
         isTitle: true
     },
-    {
+   /* {
         id: 9,
         label: 'MENUITEMS.CALENDAR.TEXT',
         icon: 'bx-calendar',
         link: '/calendar',
-    },
+    },*/
   /*  {
         id: 10,
         label: 'MENUITEMS.CHAT.TEXT',
@@ -277,17 +277,17 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-    {
+   /* {
         id: 44,
         label: 'MENUITEMS.TASKS.TEXT',
         icon: 'bx-task',
         subItems: [
-         /*   {
+            {
                 id: 45,
                 label: 'MENUITEMS.TASKS.LIST.TASKLIST',
                 link: '/tasks/list',
                 parentId: 44
-            },*/
+            },
             {
                 id: 46,
                 label: 'MENUITEMS.TASKS.LIST.KANBAN',
@@ -300,9 +300,9 @@ export const MENU: MenuItem[] = [
                 link: '/tasks/create',
                 parentId: 44
             }
-            */
+
         ]
-    },
+    }, */
     {
         id: 48,
         label: 'MENUITEMS.CONTACTS.TEXT',
@@ -314,12 +314,12 @@ export const MENU: MenuItem[] = [
                 link: '/contacts/grid',
                 parentId: 48
             },
-            {
+            /*{
                 id: 50,
                 label: 'MENUITEMS.CONTACTS.LIST.USERLIST',
                 link: '/contacts/list',
                 parentId: 48
-            },
+            },*/
             {
                 id: 51,
                 label: 'MENUITEMS.CONTACTS.LIST.PROFILE',

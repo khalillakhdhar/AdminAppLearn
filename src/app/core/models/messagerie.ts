@@ -2,8 +2,8 @@ import { User } from './user';
 export class Messagerie {
   id?:string;
   texte?:string;
-  emetteur:User;
-  recepteur:User;
+  emetteur:string;
+  recepteur:string;
   date=Date.now();
 
 }
