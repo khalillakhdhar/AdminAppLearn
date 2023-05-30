@@ -52,6 +52,7 @@ this.user=new User();
     this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Users Grid', active: true }];
     this.userForm = this.formBuilder.group({
       name: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
       email: ['', [Validators.required]],
       adresse: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -144,6 +145,7 @@ this.user=new User();
     if (this.userForm.valid) {
 
       this.user.nom= this.userForm.get('name').value;
+      this.user.prenom= this.userForm.get('prenom').value;
       this.user.adresse= this.userForm.get('adresse').value;
       this.user.email= this.userForm.get('email').value;
       this.user.tel= this.userForm.get('tel').value;
