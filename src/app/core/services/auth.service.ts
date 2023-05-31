@@ -46,7 +46,7 @@ export class AuthenticationService {
 
 
           //us.grade="user";
-          us.id=response.uid;
+         // us.id=response.uid;
         let uss=Object.assign({}, us);
         console.log(uss);
         delete uss.password;

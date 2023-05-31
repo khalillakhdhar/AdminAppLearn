@@ -6,12 +6,13 @@ export const environment = {
   production: false,
   defaultauth: 'firebase',
   firebaseConfig: {
-    apiKey: "AIzaSyDN6VbkKgjZQDMbE2izzPUllHX0pOeWjRU",
-    authDomain: "elearnweb-2ece8.firebaseapp.com",
-    projectId: "elearnweb-2ece8",
-    storageBucket: "elearnweb-2ece8.appspot.com",
-    messagingSenderId: "979796747055",
-    appId: "1:979796747055:web:7dbea466ce9ed62a87f7da"
+    apiKey: "AIzaSyBIl3EDXowOh9j374s4NJjRQ3DBYRlGx3w",
+    authDomain: "elearningdata-f89d0.firebaseapp.com",
+    projectId: "elearningdata-f89d0",
+    storageBucket: "elearningdata-f89d0.appspot.com",
+    messagingSenderId: "1016297751458",
+    appId: "1:1016297751458:web:021370b6528689b00568fb",
+    measurementId: "G-55YZGVR5C2"
   }
 };
 
