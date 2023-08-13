@@ -1,108 +1,68 @@
-<app-loader></app-loader>
+<p>Hello World</p>
+<div class="center-container">
+  <div class="formZ"><mat-card class="form-card">
+    <mat-card-header>
+      <h2>Recommandation d'offres d'emploi</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Compétence :</mat-label>
+          <input matInput type="text" [(ngModel)]="competence">
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Niveau d'études :</mat-label>
+          <mat-select [(ngModel)]="niveauEtudes">
+            <mat-option value="Bac+1">Bac+1</mat-option>
+            <mat-option value="Bac+2">Bac+2</mat-option>
+            <mat-option value="Bac+3">Bac+3</mat-option>
+            <mat-option value="Bac+5">Bac+5</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Expérience :</mat-label>
+          <mat-select [(ngModel)]="experience">
+            <mat-option value="Junior">Junior</mat-option>
+            <mat-option value="Confirmé">Confirmé</mat-option>
+            <mat-option value="Expert">Expert</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Description du profil :</mat-label>
+          <textarea matInput [(ngModel)]="description" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <button mat-raised-button  (click)="getAnnoncesRecommandees()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" ></mat-icon>
+    </button>
 
-<div class="container-fluid">
-  <app-page-title title="Calendar" [breadcrumbItems]="breadCrumbItems"></app-page-title>
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="app-calendar">
-            <!-- calendar -->
-            <full-calendar [options]="calendarOptions"></full-calendar>
-          </div>
+  </mat-card></div>
+
+  <div class="results" *ngIf="annoncesRecommandees.length > 0">
+    <h3>Annonces recommandées :</h3>
+    <div class="grid-container">
+      <div class="grid-item" *ngFor="let annonce of annoncesRecommandees">
+        <div class="annonce-card">
+          <h4>{{ annonce.Titre }}</h4>
+          <p>{{ annonce.emplacement }}</p>
+          <p>{{ annonce.Salaire }}</p>
+          <p>{{ annonce.Type_de_contrat }}</p>
+          <p>{{ annonce.Description }}</p>
+          <p>Cluster : {{ annonce.cluster }}</p>
+          <p>Similarité : {{ annonce.similarity }}</p>
+          <p>{{annonce.Competences_requises}}</p>
+          <!-- Ajoutez d'autres attributs ici selon vos besoins -->
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
-<!-- Add New Event MODAL -->
-<ng-template #modalShow let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title" id="modal-title">Add New Event</h5>
-    <button type="button" class="btn-close" (click)="closeEventModal()"></button>
-  </div>
-  <div class="modal-body p-4">
-    <form (ngSubmit)="saveEvent()" [formGroup]="formData">
-      <div class="row">
-        <div class="col-12">
-          <div class="mb-3">
-            <label class="control-label">Event Name</label>
-            <input class="form-control" placeholder="Insert Event Name" type="text" name="title" formControlName="title"
-              [ngClass]="{'is-invalid': submitted && form.title.errors}" />
-            <div *ngIf="submitted && form.title.errors" class="invalid-feedback">
-              <span *ngIf="form.title.errors.required">This value is required.</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="mb-3">
-            <label class="control-label">Category</label>
-            <select class="form-control" name="category" formControlName="category"
-              [ngClass]="{'is-invalid': submitted && form.category.errors }">
-              <option *ngFor="let option of category" value="{{ option.value }}">
-                {{ option.name }}
-              </option>
-            </select>
-            <div *ngIf="submitted && form.category.errors" class="invalid-feedback">
-              <div *ngIf="form.category.errors.required">This value is required</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-end mt-2">
-        <button type="button" class="btn btn-light me-1" (click)="closeEventModal()">
-          Close
-        </button>
-        <button type="submit" class="btn btn-success" id="btn-save-event">
-          Save
-        </button>
-      </div>
-    </form>
-  </div>
-  <!-- end modal dialog-->
-</ng-template>
-<!-- end modal-->
-
-<!-- Edit event modal -->
-<ng-template #editmodalShow let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title">Edit Event</h5>
-    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body p-4">
-    <form [formGroup]="formEditData" (ngSubmit)="editEventSave()">
-      <div class="row">
-        <div class="col-12">
-          <div class="mb-3">
-            <label class="control-label">Event name</label>
-            <input class="form-control" placeholder="Insert Event Name" type="text" name="editTitle"
-              formControlName="editTitle">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="mb-3">
-            <label class="control-label">Event category</label>
-            <select class="form-control" name="ecategory" formControlName="editCategory" required>
-              <option *ngFor="let option of category" value="{{ option.value }}"> {{ option.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-6">
-          <button type="button" class="btn btn-danger delete-event ms-1" (click)="confirm()">Delete</button>
-        </div>
-        <div class="col-6 text-end">
-          <button type="button" class="btn btn-light" (click)="modal.dismiss('Close')">Close</button>
-          <button type="submit" class="btn btn-success ms-1">Save</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-</ng-template>

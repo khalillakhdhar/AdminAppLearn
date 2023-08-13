@@ -6,6 +6,7 @@ import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/angular'
 import { category, calendarEvents, createEventId } from './data';
 
 import Swal from 'sweetalert2';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-calendar',
@@ -13,6 +14,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+  public competence: string;
+  public niveauEtudes: string;
+  public experience: string; // Utilisez également une chaîne de caractères pour correspondre aux valeurs de mat-select
+  public description: string;
+
+  // Propriété pour stocker les annonces recommandées
+  public annoncesRecommandees: any[];
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -92,8 +100,16 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+
+  ) {
+    this.competence = '';
+    this.niveauEtudes = '';
+    this.experience = ''; // Initialisez à une valeur vide
+    this.annoncesRecommandees = [];
+    this.description = '';
+  }
 
   get form() {
     return this.formData.controls;
@@ -143,7 +159,7 @@ export class CalendarComponent implements OnInit {
   editEventSave() {
     const editTitle = this.formEditData.get('editTitle').value;
     const editCategory = this.formEditData.get('editCategory').value;
-    
+
     const editId = this.calendarEvents.findIndex(
       (x) => x.id + '' === this.editEvent.id + ''
     );
@@ -221,6 +237,30 @@ export class CalendarComponent implements OnInit {
     // form submit
     this.submitted = false;
   }
+  public getAnnoncesRecommandees(): void {
+    const url = 'http://localhost:5000/recommend';
+
+    // Créer les données à envoyer au format JSON
+    const requestData = {
+      competences: this.competence,
+      niveau_etudes: this.niveauEtudes,
+      experience: this.experience,
+      description: this.description
+    };
+
+    // Définir les en-têtes pour indiquer le type de contenu JSON
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    // Appeler l'API Flask avec la méthode POST pour envoyer les données JSON
+    this.http.post<any[]>(url, requestData, httpOptions).subscribe((data: any[]) => {
+      this.annoncesRecommandees = data;
+    });
+  }
+
 
 
 }
