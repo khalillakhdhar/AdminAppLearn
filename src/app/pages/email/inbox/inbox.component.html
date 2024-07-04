@@ -114,7 +114,7 @@
                 <a [routerLink]="['../read',email.id]" class="title">{{email.email}}</a>
               </div>
               <div class="col-mail col-mail-2">
-                <a [routerLink]="['../read',email.id]" class="subject">{{email.message.length < 35 ? email.message : email.message.substring(0, 35)+'...'  }}</a>
+                <a [routerLink]="['../read',email.id]" class="subject">{{ email.message  }}</a>
                 <div class="date">{{email.dateheure | date :'short'}}</div>
               </div>
             </li>
