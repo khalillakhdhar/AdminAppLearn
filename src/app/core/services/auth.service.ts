@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-
+import { throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { getFirebaseBackend } from '../../authUtils';
-
 import { User } from '../models/auth.models';
 import { UsersService } from './user.service';
-import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-
 export class AuthenticationService {
 
     user: User;
 
-    constructor( private userService: UsersService) {
-    }
+    constructor(private userService: UsersService) {}
 
     /**
      * Returns the current user
@@ -40,43 +37,41 @@ export class AuthenticationService {
      * @param email email
      * @param password password
      */
-    register(us:any) {
-
-      return getFirebaseBackend().registerUser(us.email, us.password).then((response: any) => {
-
-
-          //us.grade="user";
-         // us.id=response.uid;
-        let uss=Object.assign({}, us);
-        console.log(uss);
-        delete uss.password;
-        this.userService.create_NewUser(uss);
-        //localStorage.setItem('user', JSON.stringify(uss));
-        this.readme(uss.email);
+    register(us: any) {
+        return getFirebaseBackend().registerUser(us.email, us.password).then((response: any) => {
+            let uss = Object.assign({}, us);
+            console.log(uss);
+            delete uss.password;
+            this.userService.create_NewUser(uss);
+            this.readme(uss.email);
             const user = response;
             return user;
+        }).catch((error) => {
+            if (error.code === 'auth/email-already-in-use') {
+                // Handle the case where the email already exists
+                return throwError('This email is already in use.');
+            } else {
+                // Handle other errors
+                return throwError(error.message);
+            }
         });
     }
-    readme(email): void {
-      this.userService.read_current(email).pipe(
-        map(changes =>
-          changes.map(c =>
-            ({ id: c.payload.doc.id,
-              ...c.payload.doc.data() as {} })
-          )
-        )
-      ).subscribe(data => {
-        let me = data[0];
-        //this.user=this.actual;
-        localStorage.setItem('user', JSON.stringify(me));
 
-        console.clear();
-        console.log("myuser",me);
-
-
-      }
-      );
+    readme(email: string): void {
+        this.userService.read_current(email).pipe(
+            map(changes =>
+                changes.map(c =>
+                    ({ id: c.payload.doc.id, ...c.payload.doc.data() as {} })
+                )
+            )
+        ).subscribe(data => {
+            let me = data[0];
+            localStorage.setItem('user', JSON.stringify(me));
+            console.clear();
+            console.log("myuser", me);
+        });
     }
+
     /**
      * Reset password
      * @param email email
@@ -96,4 +91,3 @@ export class AuthenticationService {
         getFirebaseBackend().logout();
     }
 }
-
