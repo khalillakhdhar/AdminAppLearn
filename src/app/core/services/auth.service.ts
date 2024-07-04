@@ -47,13 +47,7 @@ export class AuthenticationService {
             const user = response;
             return user;
         }).catch((error) => {
-            if (error.code === 'auth/email-already-in-use') {
-                // Handle the case where the email already exists
-                return throwError('This email is already in use.');
-            } else {
-                // Handle other errors
-                return throwError(error.message);
-            }
+            alert("ce email existe déjà!")
         });
     }
 
